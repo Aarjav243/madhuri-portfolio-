@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import VisualEditsMessenger from "@/visual-edits/VisualEditsMessenger";
 import ErrorReporter from "@/components/ErrorReporter";
+import CustomCursor from "@/components/CustomCursor";
 import Script from "next/script";
 
 export const metadata: Metadata = {
@@ -52,7 +53,9 @@ export default function RootLayout({
           data-custom-data='{"appName": "YourApp", "version": "1.0.0", "greeting": "hi"}'
         />
         {children}
+        <div className="noise-overlay" />
         <VisualEditsMessenger />
+        <CustomCursor />
         {/* External libs loaded after content */}
         <Script
           src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"

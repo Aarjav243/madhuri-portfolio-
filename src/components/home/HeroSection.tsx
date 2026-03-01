@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import { Linkedin } from "lucide-react";
 
 // Only load Spline if not on mobile or if requested?
 // For now, we'll just use a simple iframe, but we can delay it.
@@ -22,8 +23,8 @@ export default function HeroSection() {
   useEffect(() => {
     // GSAP animations for Hero
     const ctx = gsap.context(() => {
-        /* --- Floating orbs --- */
-       (gsap.utils.toArray(".glow-orb") as HTMLElement[]).forEach((orb: HTMLElement, i: number) => {
+      /* --- Floating orbs --- */
+      (gsap.utils.toArray(".glow-orb") as HTMLElement[]).forEach((orb: HTMLElement, i: number) => {
         gsap.to(orb, {
           y: -20,
           duration: 3 + i * 0.5,
@@ -95,6 +96,15 @@ export default function HeroSection() {
           </a>
           <a href="#contact" className="btn btn--outline">
             Contact
+          </a>
+          <a
+            href="https://www.linkedin.com/in/brijesh-kumar-jha-38a132131/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn--icon btn--outline magnetic"
+            title="LinkedIn Profile"
+          >
+            <Linkedin size={20} />
           </a>
         </div>
       </div>

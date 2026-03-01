@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import { SiGooglescholar } from "react-icons/si";
 
 export default function PublicationsSection() {
     const sectionRef = useRef(null);
@@ -31,7 +32,18 @@ export default function PublicationsSection() {
         <section className="section" id="publications" data-scroll-section ref={sectionRef}>
             <div className="section__container">
                 <div className="section__label">Scholarly Work</div>
-                <div className="section__title">Publications</div>
+                <div className="flex items-center gap-4 mb-4">
+                    <div className="section__title mb-0">Publications</div>
+                    <a
+                        href="https://scholar.google.com/citations?user=a7xV5KAAAAAJ&hl=en"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="pub__scholar-link btn--outline btn--icon magnetic"
+                        title="Google Scholar Profile"
+                    >
+                        <SiGooglescholar size={20} />
+                    </a>
+                </div>
 
                 <div className="publications__list">
                     <div className="pub__category">Published</div>

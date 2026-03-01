@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
+import { Linkedin } from "lucide-react";
+import { SiGooglescholar } from "react-icons/si";
 
 /* ------------------------------------------------------------------ */
 /* Declare globals loaded via CDN <script> tags                       */
@@ -37,34 +39,89 @@ export default function Home() {
     gsap.registerPlugin(ScrollTrigger);
 
     /* ============================================================
-       PRELOADER
+       CANVAS PRELOADER ANIMATION
        ============================================================ */
-    gsap.to(".progress-bar", {
-      width: "100%",
-      duration: 2,
-      ease: "power2.out",
-      onComplete: () => {
-        gsap.to(".preloader", {
-          opacity: 0,
-          scale: 0.9,
-          duration: 1,
+    const canvas = document.getElementById("hero-canvas") as HTMLCanvasElement;
+    if (canvas) {
+      const context = canvas.getContext("2d");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const frameCount = 97;
+      const currentFrame = (index: number) => (
+        `/hero_animation/ezgif-frame-${(index + 1).toString().padStart(3, "0")}.png`
+      );
+
+      const images: HTMLImageElement[] = [];
+      const sequence = { frame: 0 };
+
+      // Make sure images load initially
+      let loadedImages = 0;
+      let animationStarted = false;
+
+      for (let i = 0; i < frameCount; i++) {
+        const img = new window.Image();
+        img.onload = () => {
+          loadedImages++;
+          if (loadedImages > 5 && !animationStarted) {
+            animationStarted = true;
+            startAnimation();
+          }
+        };
+        img.src = currentFrame(i);
+        images.push(img);
+      }
+
+      function render() {
+        if (!context || !canvas) return;
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        const img = images[sequence.frame];
+        if (img && img.complete && img.naturalWidth !== 0) {
+          const hRatio = canvas.width / img.width;
+          const vRatio = canvas.height / img.height;
+          const ratio = Math.max(hRatio, vRatio);
+          const centerShift_x = (canvas.width - img.width * ratio) / 2;
+          const centerShift_y = (canvas.height - img.height * ratio) / 2;
+          context.drawImage(img, 0, 0, img.width, img.height,
+            centerShift_x, centerShift_y, img.width * ratio, img.height * ratio);
+        }
+      }
+
+      function startAnimation() {
+        gsap.to(sequence, {
+          frame: frameCount - 1,
+          snap: "frame",
+          ease: "none",
+          duration: 4, // 4 seconds animation
+          onUpdate: render,
           onComplete: () => {
-            const preloader = document.querySelector<HTMLElement>(".preloader");
-            if (preloader) preloader.style.display = "none";
-
-            /* Show main content */
-            gsap.to(".main-content", {
-              opacity: 1,
+            gsap.to(".preloader", {
+              opacity: 0,
               duration: 1,
-              ease: "power2.out",
-            });
+              onComplete: () => {
+                const preloader = document.querySelector<HTMLElement>(".preloader");
+                if (preloader) preloader.style.display = "none";
 
-            initLocomotive();
-            initAnimations();
-          },
+                gsap.to(".main-content", {
+                  opacity: 1,
+                  duration: 1,
+                  ease: "power2.out",
+                });
+
+                initLocomotive();
+                initAnimations();
+              },
+            });
+          }
         });
-      },
-    });
+      }
+
+      window.addEventListener("resize", () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        render();
+      });
+    }
 
     /* ============================================================
        LOCOMOTIVE SCROLL
@@ -142,6 +199,16 @@ export default function Home() {
         ease: "power3.out",
       });
 
+      /* --- Bell Curve Breathing --- */
+      gsap.to(".bell-curve", {
+        y: 15,
+        opacity: 0.6,
+        duration: 3,
+        repeat: -1,
+        yoyo: true,
+        ease: "power1.inOut"
+      });
+
       gsap.from(".hero__subtitle", {
         opacity: 0,
         y: 30,
@@ -159,12 +226,27 @@ export default function Home() {
         ease: "power3.out",
       });
 
-      /* --- About section --- */
+      /* --- About section (Row Alignment) --- */
+      const aboutRows = gsap.utils.toArray(".about__bio p") as HTMLElement[];
+      aboutRows.forEach((row, i) => {
+        gsap.from(row, {
+          scrollTrigger: {
+            trigger: row,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+          x: i % 2 === 0 ? -50 : 50,
+          opacity: 0,
+          duration: 1,
+          ease: "power2.out",
+        });
+      });
+
       gsap.from(".about__photo-wrap", {
         scrollTrigger: {
           trigger: ".about",
-          start: "top 80%",
-          toggleActions: "play reverse play reverse",
+          start: "top 70%",
+          toggleActions: "play none none reverse",
         },
         x: -60,
         opacity: 0,
@@ -185,17 +267,23 @@ export default function Home() {
         ease: "power3.out",
       });
 
-      /* --- Education timeline --- */
-      gsap.to(".timeline-line-fill", {
-        scrollTrigger: {
-          trigger: ".education__timeline",
-          start: "top 80%",
-          end: "bottom 60%",
-          scrub: 1,
-        },
-        height: "100%",
-        ease: "none",
-      });
+      /* --- Education timeline (CDF Step Chart) --- */
+      const timelinePath = document.querySelector(".timeline-path") as SVGPathElement;
+      if (timelinePath) {
+        const pathLength = timelinePath.getTotalLength();
+        gsap.set(timelinePath, { strokeDasharray: pathLength, strokeDashoffset: pathLength });
+
+        gsap.to(timelinePath, {
+          strokeDashoffset: 0,
+          scrollTrigger: {
+            trigger: ".education__timeline",
+            start: "top 70%",
+            end: "bottom 60%",
+            scrub: 1,
+          },
+          ease: "none",
+        });
+      }
 
       (gsap.utils.toArray(".education__item") as HTMLElement[]).forEach((item: HTMLElement, i: number) => {
         gsap.from(item, {
@@ -244,7 +332,7 @@ export default function Home() {
         });
       });
 
-      /* --- Publication items --- */
+      /* --- Publication items (Correlation Thread) --- */
       (gsap.utils.toArray(".pub__item") as HTMLElement[]).forEach((item: HTMLElement, i: number) => {
         gsap.from(item, {
           scrollTrigger: {
@@ -258,9 +346,109 @@ export default function Home() {
           delay: i * 0.06,
           ease: "power3.out",
         });
+
+        // Correlation thread tracking
+        ScrollTrigger.create({
+          trigger: item,
+          start: "top 50%",
+          end: "bottom 50%",
+          onEnter: () => {
+            gsap.to(".pub__thread-pointer", {
+              y: item.offsetTop - (document.querySelector(".publications__list") as HTMLElement).offsetTop,
+              duration: 0.4,
+              ease: "back.out(1.7)"
+            });
+            gsap.to(item, { backgroundColor: "rgba(255, 140, 0, 0.08)", duration: 0.3 });
+          },
+          onLeave: () => {
+            gsap.to(item, { backgroundColor: "transparent", duration: 0.3 });
+          },
+          onEnterBack: () => {
+            gsap.to(".pub__thread-pointer", {
+              y: item.offsetTop - (document.querySelector(".publications__list") as HTMLElement).offsetTop,
+              duration: 0.4,
+              ease: "back.out(1.7)"
+            });
+            gsap.to(item, { backgroundColor: "rgba(255, 140, 0, 0.08)", duration: 0.3 });
+          },
+          onLeaveBack: () => {
+            gsap.to(item, { backgroundColor: "transparent", duration: 0.3 });
+          }
+        });
       });
 
-      /* --- Section headers --- */
+      /* --- Holographic Tilt for Cards --- */
+      const cards = gsap.utils.toArray(".glass-card") as HTMLElement[];
+      cards.forEach((card) => {
+        const glimmer = card.querySelector(".glimmer-overlay") as HTMLElement;
+
+        card.addEventListener("mousemove", (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+
+          const rotateX = (y - centerY) / 10;
+          const rotateY = (centerX - x) / 10;
+
+          gsap.to(card, {
+            rotateX: rotateX,
+            rotateY: rotateY,
+            duration: 0.5,
+            ease: "power2.out",
+            perspective: 1000,
+          });
+
+          if (glimmer) {
+            gsap.to(glimmer, {
+              opacity: 0.4,
+              x: x - rect.width / 2,
+              y: y - rect.height / 2,
+              duration: 0.2,
+            });
+          }
+        });
+
+        card.addEventListener("mousedown", () => {
+          gsap.to(card, {
+            scale: 0.96,
+            boxShadow: "0 4px 20px rgba(255, 140, 0, 0.4)",
+            duration: 0.2,
+            ease: "power2.out",
+          });
+          if (glimmer) {
+            gsap.to(glimmer, { opacity: 0.8, duration: 0.2 });
+          }
+        });
+
+        card.addEventListener("mouseup", () => {
+          gsap.to(card, {
+            scale: 1,
+            boxShadow: "0 8px 40px rgba(255, 140, 0, 0.12)",
+            duration: 0.4,
+            ease: "back.out(2)",
+          });
+          if (glimmer) {
+            gsap.to(glimmer, { opacity: 0.4, duration: 0.4 });
+          }
+        });
+
+        card.addEventListener("mouseleave", () => {
+          gsap.to(card, {
+            scale: 1,
+            rotateX: 0,
+            rotateY: 0,
+            boxShadow: "none",
+            duration: 0.5,
+            ease: "power2.out",
+          });
+          if (glimmer) {
+            gsap.to(glimmer, { opacity: 0, duration: 0.5 });
+          }
+        });
+      });
       (gsap.utils.toArray(".section__label, .section__title, .section__desc") as HTMLElement[]).forEach((el: HTMLElement) => {
         gsap.from(el, {
           scrollTrigger: {
@@ -382,14 +570,8 @@ export default function Home() {
       {/* ============================
           PRELOADER
           ============================ */}
-      <div className="preloader">
-        <div className="preloader__name">Dr. Brijesh Kumar Jha</div>
-        <div className="preloader__tagline">
-          Statistics &nbsp;|&nbsp; Inference &nbsp;|&nbsp; Decision Theory
-        </div>
-        <div className="preloader__bar-wrap">
-          <div className="progress-bar" />
-        </div>
+      <div className="preloader" style={{ background: "#000", padding: 0 }}>
+        <canvas id="hero-canvas" style={{ width: "100vw", height: "100vh", display: "block", objectFit: "cover" }} />
       </div>
 
       {/* ============================
@@ -432,7 +614,17 @@ export default function Home() {
       >
         {/* ── HERO ── */}
         <section className="hero" id="hero" data-scroll-section>
-          <div className="hero__pattern-bg" />
+          <div className="hero__pattern-bg">
+            <svg className="bell-curve" viewBox="0 0 1000 500" preserveAspectRatio="none">
+              <path
+                d="M 0 450 C 150 450, 350 450, 500 100 S 850 450, 1000 450"
+                fill="none"
+                stroke="var(--accent-orange)"
+                strokeWidth="4"
+                opacity="0.7"
+              />
+            </svg>
+          </div>
           <div className="hero__overlay" />
           <div className="glow-orb glow-orb--1" />
           <div className="glow-orb glow-orb--2" />
@@ -449,6 +641,15 @@ export default function Home() {
               </a>
               <a href="#contact" className="btn btn--outline" onClick={(e) => handleNavClick(e, "#contact")}>
                 Contact
+              </a>
+              <a
+                href="https://www.linkedin.com/in/brijesh-kumar-jha-38a132131/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn--icon btn--outline magnetic"
+                title="LinkedIn Profile"
+              >
+                <Linkedin size={20} />
               </a>
             </div>
           </div>
@@ -508,10 +709,35 @@ export default function Home() {
             <div className="section__label">Education</div>
             <div className="section__title">Academic Qualifications</div>
             <div className="education__timeline">
-              <div className="timeline-line-fill" />
+              <div className="timeline-svg-container">
+                <svg width="100%" height="100%" viewBox="0 0 100 800" preserveAspectRatio="none">
+                  <path
+                    className="timeline-path-bg"
+                    d="M10,0 V150 H90 V400 H10 V650 H90"
+                    fill="none"
+                    stroke="rgba(255,255,255,0.05)"
+                    strokeWidth="2"
+                  />
+                  <path
+                    className="timeline-path"
+                    d="M10,0 V150 H90 V400 H10 V650 H90"
+                    fill="none"
+                    stroke="url(#timeline-grad)"
+                    strokeWidth="2"
+                  />
+                  <defs>
+                    <linearGradient id="timeline-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stopColor="var(--accent-cyan)" />
+                      <stop offset="50%" stopColor="var(--accent-blue)" />
+                      <stop offset="100%" stopColor="var(--accent-purple)" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
 
               <div className="education__item">
                 <div className="education__card glass-card">
+                  <div className="glimmer-overlay" />
                   <div className="education__degree">
                     Ph.D., Mathematical Statistics
                   </div>
@@ -525,6 +751,7 @@ export default function Home() {
 
               <div className="education__item">
                 <div className="education__card glass-card">
+                  <div className="glimmer-overlay" />
                   <div className="education__degree">
                     Postgraduate Degree, Statistics
                   </div>
@@ -538,6 +765,7 @@ export default function Home() {
 
               <div className="education__item">
                 <div className="education__card glass-card">
+                  <div className="glimmer-overlay" />
                   <div className="education__degree">
                     Graduate, Mathematics and Computer Science
                   </div>
@@ -559,6 +787,7 @@ export default function Home() {
             <div className="section__title">Teaching Experience</div>
             <div className="teaching__grid">
               <div className="teaching__card glass-card">
+                <div className="glimmer-overlay" />
                 <div className="teaching__role">INSPIRE Fellow (DST)</div>
                 <div className="teaching__institution">
                   IIT Bhubaneswar
@@ -569,6 +798,7 @@ export default function Home() {
               </div>
 
               <div className="teaching__card glass-card">
+                <div className="glimmer-overlay" />
                 <div className="teaching__role">Assistant Professor</div>
                 <div className="teaching__institution">
                   Siksha &apos;O&apos; Anusandhan (Deemed to be University)
@@ -579,6 +809,7 @@ export default function Home() {
               </div>
 
               <div className="teaching__card glass-card">
+                <div className="glimmer-overlay" />
                 <div className="teaching__role">Guest Lecturer</div>
                 <div className="teaching__institution">
                   Various Academic Institutions
@@ -589,6 +820,7 @@ export default function Home() {
               </div>
 
               <div className="teaching__card glass-card">
+                <div className="glimmer-overlay" />
                 <div className="teaching__role">Research Scholar</div>
                 <div className="teaching__institution">
                   Siksha &apos;O&apos; Anusandhan (Deemed to be University)
@@ -616,6 +848,7 @@ export default function Home() {
                 { icon: "📈", name: "Econometrics" },
               ].map((item) => (
                 <div className="research__item glass-card" key={item.name}>
+                  <div className="glimmer-overlay" />
                   <span className="research__icon">{item.icon}</span>
                   <div className="research__name">{item.name}</div>
                 </div>
@@ -628,64 +861,96 @@ export default function Home() {
         <section className="section" id="publications" data-scroll-section>
           <div className="section__container">
             <div className="section__label">Scholarly Work</div>
-            <div className="section__title">Publications</div>
+            <div className="flex items-center gap-4 mb-4">
+              <div className="section__title mb-0">Publications</div>
+              <a
+                href="https://scholar.google.com/citations?user=a7xV5KAAAAAJ&hl=en"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pub__scholar-link btn--outline btn--icon magnetic"
+                title="Google Scholar Profile"
+              >
+                <SiGooglescholar size={20} />
+              </a>
+            </div>
 
-            <div className="publications__list">
-              <div className="pub__category">Published</div>
-
-              {[
-                {
-                  title:
-                    "Improved estimators of hazard rate from a selected exponential population",
-                  year: "2023",
-                },
-                {
-                  title:
-                    "Inadmissibility results for selected hazard rates",
-                  year: "2021",
-                },
-                {
-                  title:
-                    "Estimation of Reliability Following Selection from Pareto Populations",
-                  year: "2021",
-                },
-                {
-                  title:
-                    "Estimation of Hazard Rate of a Selected Exponential Population",
-                  year: "2020",
-                },
-                {
-                  title:
-                    "Reliability Estimation after Selection from One Parameter Exponential Population",
-                  year: "2020",
-                },
-                {
-                  title:
-                    "Estimation of Hazard in Human Brain Signal Using Exponential Distribution",
-                  year: "2019",
-                },
-              ].map((pub) => (
-                <div className="pub__item glass-card" key={pub.title}>
-                  <div className="pub__title">{pub.title}</div>
-                  <div className="pub__year">{pub.year}</div>
-                </div>
-              ))}
-
-              <div className="pub__category">Submitted</div>
-              <div className="pub__item glass-card">
-                <div className="pub__title">
-                  Improving on admissible estimators under entropy loss function
-                </div>
-                <div className="pub__year">2024</div>
+            <div className="publications__list-wrapper">
+              <div className="pub__thread">
+                <div className="pub__thread-line" />
+                <div className="pub__thread-pointer" />
               </div>
+              <div className="publications__list">
+                <div className="pub__category">Published</div>
 
-              <div className="pub__category">Preprint</div>
-              <div className="pub__item glass-card">
-                <div className="pub__title">
-                  Non-parametric Estimation for Stochastic Differential Equation
-                  perturbed by L&eacute;vy Noise
+                {[
+                  {
+                    title:
+                      "Improved estimators of hazard rate from a selected exponential population",
+                    year: "2023",
+                    href: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=a7xV5KAAAAAJ&citation_for_view=a7xV5KAAAAAJ:9yKSN-GCB0IC"
+                  },
+                  {
+                    title:
+                      "Inadmissibility results for selected hazard rates",
+                    year: "2021",
+                    href: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=a7xV5KAAAAAJ&citation_for_view=a7xV5KAAAAAJ:u5HHmVD_uO8C"
+                  },
+                  {
+                    title:
+                      "Estimation of Reliability Following Selection from Pareto Populations",
+                    year: "2021",
+                    href: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=a7xV5KAAAAAJ&citation_for_view=a7xV5KAAAAAJ:u-x6o8ySG0sC"
+                  },
+                  {
+                    title:
+                      "Estimation of Hazard Rate of a Selected Exponential Population",
+                    year: "2020",
+                    href: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=a7xV5KAAAAAJ&citation_for_view=a7xV5KAAAAAJ:d1gkVwhDpl0C"
+                  },
+                  {
+                    title:
+                      "Reliability Estimation after Selection from One Parameter Exponential Population",
+                    year: "2020",
+                    href: "http://www.testmagzine.biz/index.php/testmagzine/article/view/10411"
+                  },
+                  {
+                    title:
+                      "Estimation of Hazard in Human Brain Signal Using Exponential Distribution",
+                    year: "2019",
+                    href: "https://www.ijstr.org/final-print/nov2019/Estimation-Of-Hazard-In-Human-Brain-Signal-Using-Exponential-Distribution.pdf"
+                  },
+                ].map((pub) => (
+                  <div className="pub__item glass-card" key={pub.title}>
+                    <div className="glimmer-overlay" />
+                    <a href={pub.href} target="_blank" rel="noopener noreferrer" className="pub__link">
+                      <div className="pub__title">{pub.title}</div>
+                    </a>
+                    <div className="pub__year">{pub.year}</div>
+                  </div>
+                ))}
+
+                <div className="pub__category">Submitted</div>
+                <div className="pub__item glass-card">
+                  <div className="glimmer-overlay" />
+                  <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=a7xV5KAAAAAJ&citation_for_view=a7xV5KAAAAAJ:2osOgNQ5qMEC" target="_blank" rel="noopener noreferrer" className="pub__link">
+                    <div className="pub__title">
+                      Improving on admissible estimators under entropy loss function
+                    </div>
+                  </a>
+                  <div className="pub__year">2024</div>
                 </div>
-                <div className="pub__year">2024</div>
+
+                <div className="pub__category">Preprint</div>
+                <div className="pub__item glass-card">
+                  <div className="glimmer-overlay" />
+                  <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=a7xV5KAAAAAJ&citation_for_view=a7xV5KAAAAAJ:UeHWp8X0CEIC" target="_blank" rel="noopener noreferrer" className="pub__link">
+                    <div className="pub__title">
+                      Non-parametric Estimation for Stochastic Differential Equation
+                      perturbed by L&eacute;vy Noise
+                    </div>
+                  </a>
+                  <div className="pub__year">2024</div>
+                </div>
               </div>
             </div>
           </div>
@@ -770,7 +1035,7 @@ export default function Home() {
               </svg>
             </a>
             <a
-              href="https://scholar.google.com"
+              href="https://scholar.google.com/citations?user=a7xV5KAAAAAJ&hl=en"
               target="_blank"
               rel="noopener noreferrer"
               className="footer__icon"
