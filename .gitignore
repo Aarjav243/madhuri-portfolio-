@@ -36,3 +36,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# scratch files
+scholar*.txt
+scholar_full_files/
+extract.js
+update_pubs.js
+extracted_pubs.json

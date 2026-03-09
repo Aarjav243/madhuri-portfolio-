@@ -6,9 +6,9 @@ import CustomCursor from "@/components/CustomCursor";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "Dr. Brijesh Kumar Jha | PhD Statistics Portfolio",
+  title: "Dr. Madhuri Saripalle | Professor of Economics Portfolio",
   description:
-    "Academic portfolio of Dr. Brijesh Kumar Jha — PhD in Statistics, specializing in Statistical Inference, Bayesian Estimation, and Decision Theory.",
+    "Academic portfolio of Dr. Madhuri Saripalle — Professor at IFMR GSB, Krea University, specializing in Industrial Organization, Agri-business, and Supply Chain Management.",
 };
 
 export default function RootLayout({
