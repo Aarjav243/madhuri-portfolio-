@@ -932,23 +932,39 @@ export default function Home() {
             <div className="projects__grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
               <div className="project__card glass-card" style={{ padding: '2rem' }}>
                 <div className="glimmer-overlay" />
-                <h4 className="project__title" style={{ fontSize: '1.25rem', fontWeight: 600, marginBottom: '1rem' }}>E-Commerce for sustainable and inclusive growth</h4>
-                <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1rem' }}>Principal Investigator | Seed Funding from Krea University</p>
-                <div style={{ fontSize: '0.85rem', color: 'var(--accent-orange)' }}>Ongoing (2024–2026)</div>
+                <h4 className="project__title" style={{ fontSize: '1.25rem', fontWeight: 600, marginBottom: '1rem' }}>Analysing rice price volatility across interrelated markets in India</h4>
+                <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1rem' }}>Funded by IFMR Fund for Research in Humanities and Social Sciences</p>
               </div>
 
               <div className="project__card glass-card" style={{ padding: '2rem' }}>
                 <div className="glimmer-overlay" />
-                <h4 className="project__title" style={{ fontSize: '1.25rem', fontWeight: 600, marginBottom: '1rem' }}>Labour conditions in the global value chains</h4>
-                <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1rem' }}>Lead Researcher | Study of selected sectors in the Madras Export Processing Zone</p>
-                <div style={{ fontSize: '0.85rem', color: 'var(--accent-orange)' }}>CIFMR-Krea (2018–2020)</div>
+                <h4 className="project__title" style={{ fontSize: '1.25rem', fontWeight: 600, marginBottom: '1rem' }}>Needs Assessment Analysis: Village clusters in Tamil Nadu</h4>
+                <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1rem' }}>Funded by Sri A.M.M. Murugappa Chettiar Research Center (MCRC), Chennai, Tamil Nadu</p>
               </div>
 
               <div className="project__card glass-card" style={{ padding: '2rem' }}>
                 <div className="glimmer-overlay" />
-                <h4 className="project__title" style={{ fontSize: '1.25rem', fontWeight: 600, marginBottom: '1rem' }}>Automotive component industry on the DMIC</h4>
-                <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1rem' }}>Project Leader | Funded by Japan Bank for International Cooperation (JBIC)</p>
-                <div style={{ fontSize: '0.85rem', color: 'var(--accent-orange)' }}>2012–2014</div>
+                <h4 className="project__title" style={{ fontSize: '1.25rem', fontWeight: 600, marginBottom: '1rem' }}>Manufacturing Matters: Employment-oriented industrialisation</h4>
+                <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1rem' }}>With Ford Foundation and IGIDR</p>
+              </div>
+
+              <div className="project__card glass-card" style={{ padding: '2rem' }}>
+                <div className="glimmer-overlay" />
+                <h4 className="project__title" style={{ fontSize: '1.25rem', fontWeight: 600, marginBottom: '1rem' }}>Fiscal Instruments for Climate-Friendly Industrial Development</h4>
+                <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1rem' }}>Collaboration with Madras School of Economics and CII</p>
+                <div style={{ fontSize: '0.85rem', color: 'var(--accent-orange)' }}>2011–12</div>
+              </div>
+
+              <div className="project__card glass-card" style={{ padding: '2rem' }}>
+                <div className="glimmer-overlay" />
+                <h4 className="project__title" style={{ fontSize: '1.25rem', fontWeight: 600, marginBottom: '1rem' }}>Technology Solutions Impact Analysis</h4>
+                <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1rem' }}>Third-party validation for Core Support Program initiatives, Sri A.M.M. Murugappa Chettiar Research Center (MCRC), Chennai</p>
+              </div>
+
+              <div className="project__card glass-card" style={{ padding: '2rem' }}>
+                <div className="glimmer-overlay" />
+                <h4 className="project__title" style={{ fontSize: '1.25rem', fontWeight: 600, marginBottom: '1rem' }}>Labour practices in India</h4>
+                <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1rem' }}>In collaboration with the Institute for Human Development Studies (IHDS) and the International Labour Organisation (ILO)</p>
               </div>
             </div>
           </div>
@@ -979,28 +995,58 @@ export default function Home() {
                 {/* Conference city-node network list */}
                 {[
                   {
-                    title: "Production decisions of small farmers during COVID-19: Evidence from Karnataka",
-                    venue: "GSSI-U-Catania Summer School, Catania, Italy",
-                    location: "🇮🇹 Catania, Italy",
-                    date: "May 2022"
+                    title: "Electric Vehicle Penetration and Smart Mobility Solutions in Urban India",
+                    venue: "Conference on Mobility and Transport Solutions for Societal Challenges, Venice School of Management (VSM) & Center for Automotive and Mobility Innovation (CAMI)",
+                    location: "🇮🇹 Venice, Italy",
+                    date: "Oct 2026"
                   },
                   {
-                    title: "Growth of small firms in Indian telecommunications: Is there any regional pattern?",
-                    venue: "Annual Conference of the ARSC, Tokyo, Japan",
-                    location: "🇯🇵 Tokyo, Japan",
-                    date: "Nov 2017"
+                    title: "Agriculture transformation in Telangana: case study of Paddy cultivation",
+                    venue: "International Conference on Enabling Sustained Growth in Emerging Asia, University of Hyderabad, School of Economics",
+                    location: "🇮🇳 Hyderabad, India",
+                    date: "Feb 2025"
                   },
                   {
-                    title: "Growth and performance of SMEs in the Mysore-Bangalore industrial corridor",
-                    venue: "54th Annual ERSA Conference, St. Petersburg, Russia",
-                    location: "🇷🇺 St. Petersburg, Russia",
-                    date: "Aug 2014"
+                    title: "Analyzing Interstate Price Volatility in the Rice Supply Chain",
+                    venue: "AAEA Annual Conference",
+                    location: "🇺🇸 USA",
+                    date: "2024"
                   },
                   {
-                    title: "Inter-firm relationship, technical efficiency and survival: Evidence from the Indian automobile industry",
-                    venue: "2013 Industry Studies Conference, Kansas City, USA",
-                    location: "🇺🇸 Kansas City, USA",
-                    date: "May 2013"
+                    title: "Testing and Risk Attitude under Incomplete Information: game theoretic perspective",
+                    venue: "AEA Annual Meeting",
+                    location: "🇺🇸 San Antonio, USA",
+                    date: "2024"
+                  },
+                  {
+                    title: "Panel discussant on 'Sectoral Firms'",
+                    venue: "Workshop on Industrial Policy in Indian States, organised by MIDS in collaboration with NPEI, IIT Mumbai",
+                    location: "🇮🇳 India",
+                    date: "Mar 2024"
+                  },
+                  {
+                    title: "Small Farmer Production Choices During COVID-19",
+                    venue: "WINIR Conference",
+                    location: "🇮🇹 Italy",
+                    date: "2023"
+                  },
+                  {
+                    title: "Production, Prices and Supply Chain disruption: Evidence from farmers in South India",
+                    venue: "AAEA Annual Conference",
+                    location: "🇺🇸 USA",
+                    date: "2022"
+                  },
+                  {
+                    title: "Trade and R&D Impact on Productivity",
+                    venue: "CAED Conference, University of Michigan",
+                    location: "🇺🇸 USA",
+                    date: "2019"
+                  },
+                  {
+                    title: "Industrialisation for Jobs and Growth",
+                    venue: "Dissemination Workshop, organised by Ministry of Skill Development and Entrepreneurship & IGIDR, New Delhi",
+                    location: "🇮🇳 New Delhi, India",
+                    date: "Oct 2019"
                   }
                 ].map((conf, idx) => (
                   <div className="conf__item" key={conf.title} style={{ marginBottom: '1.2rem', position: 'relative' }}>
