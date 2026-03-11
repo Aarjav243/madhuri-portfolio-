@@ -214,15 +214,7 @@ export default function Home() {
         }, 100);
       }
 
-      /* --- Bell Curve Breathing --- */
-      gsap.to(".bell-curve", {
-        y: 15,
-        opacity: 0.6,
-        duration: 3,
-        repeat: -1,
-        yoyo: true,
-        ease: "power1.inOut"
-      });
+      
 
       gsap.from(".hero__subtitle", {
         opacity: 0,
@@ -667,17 +659,7 @@ export default function Home() {
       >
         {/* ── HERO ── */}
         <section className="hero" id="hero" data-scroll-section>
-          <div className="hero__pattern-bg">
-            <svg className="bell-curve" viewBox="0 0 1000 500" preserveAspectRatio="none">
-              <path
-                d="M 0 450 C 150 450, 350 450, 500 100 S 850 450, 1000 450"
-                fill="none"
-                stroke="var(--accent-orange)"
-                strokeWidth="4"
-                opacity="0.7"
-              />
-            </svg>
-          </div>
+          
           <div className="hero__overlay" />
           <div className="glow-orb glow-orb--1" />
           <div className="glow-orb glow-orb--2" />
@@ -903,6 +885,80 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ── ADMINISTRATIVE ── */}
+        <section className="section" id="admin" data-scroll-section>
+          <div className="section__container">
+            <div className="section__label">Leadership</div>
+            <div className="section__title">Administrative Positions</div>
+            <div className="projects__grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+              <div className="project__card glass-card" style={{ padding: '2rem' }}>
+                <div className="glimmer-overlay" />
+                <h4 className="project__title" style={{ fontSize: '1.25rem', fontWeight: 600, marginBottom: '0.5rem' }}>MBA Chairperson</h4>
+                <div style={{ fontSize: '0.9rem', color: 'var(--accent-orange)' }}>2024–26</div>
+              </div>
+              <div className="project__card glass-card" style={{ padding: '2rem' }}>
+                <div className="glimmer-overlay" />
+                <h4 className="project__title" style={{ fontSize: '1.25rem', fontWeight: 600, marginBottom: '0.5rem' }}>PhD Chairperson</h4>
+                <div style={{ fontSize: '0.9rem', color: 'var(--accent-orange)' }}>2018–19</div>
+              </div>
+              <div className="project__card glass-card" style={{ padding: '2rem' }}>
+                <div className="glimmer-overlay" />
+                <h4 className="project__title" style={{ fontSize: '1.25rem', fontWeight: 600, marginBottom: '0.5rem' }}>Area Chair, Economics</h4>
+                <div style={{ fontSize: '0.9rem', color: 'var(--accent-orange)' }}>2016–18</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── TEACHING ── */}
+        <section className="section" id="teaching-portfolio" data-scroll-section>
+          <div className="section__container">
+            <div className="section__label">Expertise</div>
+            <div className="section__title">Teaching Portfolio</div>
+            <div className="research__grid">
+              {[
+                "Microeconomics I & II", "Managerial Economics", "Industrial Organization", 
+                "Game Theory", "Development Economics", "Business Applications in Game Theory"
+              ].map((course) => (
+                <div className="research__item glass-card" key={course}>
+                  <div className="glimmer-overlay" />
+                  <div className="research__name" style={{ textAlign: 'center' }}>{course}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── INDUSTRY ── */}
+        <section className="section" id="industry" data-scroll-section>
+          <div className="section__container">
+            <div className="section__label">Professional</div>
+            <div className="section__title">Industry Experience</div>
+            <div className="teaching__timeline">
+              <div className="teaching__grid">
+                <div className="teaching__card glass-card">
+                  <div className="glimmer-overlay" />
+                  <div className="exp__node-indicator" />
+                  <div className="teaching__role">Assistant General Manager</div>
+                  <div className="teaching__institution">Knowledge Management, TVS Supply Chain Solutions, Chennai</div>
+                </div>
+                <div className="teaching__card glass-card">
+                  <div className="glimmer-overlay" />
+                  <div className="exp__node-indicator" />
+                  <div className="teaching__role">Economist</div>
+                  <div className="teaching__institution">Murugappa Group, Chennai</div>
+                </div>
+                <div className="teaching__card glass-card">
+                  <div className="glimmer-overlay" />
+                  <div className="exp__node-indicator" />
+                  <div className="teaching__role">Senior Economist</div>
+                  <div className="teaching__institution">Nathan Economic Consulting, Chennai</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="section" id="research" data-scroll-section>
           <div className="section__container">
             <div className="section__label">Interests</div>
@@ -963,12 +1019,16 @@ export default function Home() {
 
               <div className="project__card glass-card" style={{ padding: '2rem' }}>
                 <div className="glimmer-overlay" />
+                <h4 className="project__title" style={{ fontSize: '1.25rem', fontWeight: 600, marginBottom: '1rem' }}>Impact analysis of Rural Greening Program-Third Party validation</h4>
+                <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1rem' }}>Funded by Sri AMM Murugappa Chettiar Research Centre (MCRC), Chennai, Tamil Nadu</p>
+              </div>
+
+              <div className="project__card glass-card" style={{ padding: '2rem' }}>
+                <div className="glimmer-overlay" />
                 <h4 className="project__title" style={{ fontSize: '1.25rem', fontWeight: 600, marginBottom: '1rem' }}>Labour practices in India</h4>
                 <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1rem' }}>In collaboration with the Institute for Human Development Studies (IHDS) and the International Labour Organisation (ILO)</p>
               </div>
-            </div>
-          </div>
-        </section>
+            </div>           </div>         </section>
 
         {/* ── CONFERENCES ── */}
         <section className="section" id="conferences" data-scroll-section>
@@ -1367,6 +1427,24 @@ export default function Home() {
                     book: "Industrialisation for Employment and Growth in India. Cambridge University Press",
                     year: "2021",
                     authors: "Saripalle, M."
+                  },
+                  {
+                    title: "Integration into global automotive value chains: co-evolution of firm and market capabilities",
+                    book: "International Trade and Industrial Development in India: Emerging Trends, Patterns and Issues, Orient Blackswan, New Delhi",
+                    year: "2016",
+                    authors: "Saripalle, M."
+                  },
+                  {
+                    title: "Labour Practices in India",
+                    book: "ILO Asia- Pacific Working Paper Series, ISSN: 2227-4391",
+                    year: "2016",
+                    authors: "Saripalle, M., Dev Nathan, & L Gurunathan"
+                  },
+                  {
+                    title: "R&D spillovers across the supply chain: Evidence from the Indian automobile industry",
+                    book: "Globalization of Indian Industries: productivity, exports and investments, Springer",
+                    year: "2016",
+                    authors: "Saripalle, M."
                   }
                 ].map((chapter) => (
                   <div className="pub__item glass-card" key={chapter.title} style={{ padding: '1.5rem', marginBottom: '1rem', position: 'relative' }}>
@@ -1382,7 +1460,84 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── CONTACT ── */}
+        
+        {/* ── WORKING PAPERS ── */}
+        <section className="section" id="working-papers" data-scroll-section>
+          <div className="section__container">
+            <div className="section__label">Forthcoming</div>
+            <div className="section__title">Working Papers / Monographs</div>
+            <div className="publications__list">
+              {[
+                { title: "Economic Analysis of Organic Inputs and Bio Stimulants: Adoption and Crop Yield in South India", venue: "Under review, Sustainable Futures" },
+                { title: "Agricultural Transformation and Paddy production: Case study of Telangana", venue: "" },
+                { title: "Decision making in the pandemic under incomplete information: a game theory perspective", venue: "With Vijaya C. Subramanian" },
+                { title: "Mobile penetration, inequality and economic growth", venue: "With Jyoti Prasad Mukhopadhyay and Surabhi Somya" },
+                { title: "Fiscal instruments for climate-friendly industrial development", venue: "Monograph 28/2014, Madras School of Economics, March 2014" }
+              ].map((paper) => (
+                <div className="pub__item glass-card" key={paper.title} style={{ padding: '1.5rem', marginBottom: '1rem', position: 'relative' }}>
+                  <div className="glimmer-overlay" />
+                  <div className="pub__node-indicator" />
+                  <div className="pub__title" style={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: '0.5rem' }}>{paper.title}</div>
+                  {paper.venue && <div style={{ fontSize: '0.9rem', color: 'var(--accent-orange)', fontStyle: 'italic' }}>{paper.venue}</div>}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+    
+        {/* ── SELECTED ARTICLES ── */}
+        <section className="section" id="articles" data-scroll-section>
+          <div className="section__container">
+            <div className="section__label">Opinion & News</div>
+            <div className="section__title">Selected Articles</div>
+            <div className="publications__list">
+              {[
+                { 
+                  title: "Looking into our Export Basket", 
+                  outlet: "Hindu Business Line", 
+                  date: "Oct 2024",
+                  url: "https://www.thehindubusinessline.com/opinion/looking-into-our-export-basket/article68765905.ece"
+                },
+                { 
+                  title: "Cracking the Indian Auto Market", 
+                  outlet: "Hindu Business Line", 
+                  date: "Sept 2021",
+                  url: "https://www.thehindubusinessline.com/opinion/cracking-the-indian-auto-market-why-ford-lost-and-hyundai-won/article36554159.ece"
+                },
+                { 
+                  title: "End Brinkmanship on Farm Laws", 
+                  outlet: "Mint", 
+                  date: "Feb 2021",
+                  url: "https://www.livemint.com/opinion/online-views/end-brinkmanship-and-go-for-a-win-win-on-farm-laws-11614184329199.html"
+                },
+                { 
+                  title: "Start with local languages for the ease of starting business", 
+                  outlet: "Mint", 
+                  date: "Feb 2020",
+                  url: "https://www.livemint.com/opinion/columns/start-with-local-languages-for-the-ease-of-starting-a-business-11581962582497.html"
+                },
+                { 
+                  title: "GST impact on the Logistics sector", 
+                  outlet: "Mint", 
+                  date: "August 8, 2017",
+                  url: "https://www.livemint.com/Opinion/NbSCQ2KGNEcTGf1PA7IxcM/GST-impact-on-the-logistics-sector.html"
+                }
+              ].map((article) => (
+                <div className="pub__item glass-card" key={article.title} style={{ padding: '1.5rem', marginBottom: '1rem', position: 'relative' }}>
+                  <div className="glimmer-overlay" />
+                  <div className="pub__node-indicator" />
+                  <a href={article.url} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
+                    <div className="pub__title" style={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: '0.5rem', transition: 'color 0.2s ease' }} onMouseOver={(e) => e.currentTarget.style.color = 'var(--accent-orange)'} onMouseOut={(e) => e.currentTarget.style.color = 'inherit'}>
+                      {article.title}
+                    </div>
+                  </a>
+                  <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>{article.outlet} | {article.date}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+    {/* ── CONTACT ── */}
         <section className="section contact" id="contact" data-scroll-section>
           <div className="section__container">
             <div className="section__label">Get in Touch</div>
