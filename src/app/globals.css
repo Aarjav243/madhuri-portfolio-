@@ -1392,3 +1392,124 @@ html.has-scroll-smooth body {
   height: 100%;
   object-fit: cover;
 }
+/* ============================================
+   MOBILE RESPONSIVENESS (BREAKPOINTS)
+   ============================================ */
+
+/* --- Tablet & Small Desktop (max-width: 1024px) --- */
+@media (max-width: 1024px) {
+  .section__container {
+    max-width: 90%;
+  }
+}
+
+/* --- Mobile & Tablet (max-width: 768px) --- */
+@media (max-width: 768px) {
+  .nav {
+    padding: 1rem 1.5rem;
+  }
+
+  .nav__links {
+    display: none;
+  }
+
+  .nav__hamburger {
+    display: flex;
+  }
+
+  .hero__title {
+    font-size: 2.8rem;
+  }
+
+  .hero__subtitle {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+
+  .about__grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    text-align: center;
+  }
+
+  .about__photo {
+    margin: 0 auto;
+    width: 200px;
+    height: 200px;
+  }
+
+  .about__list {
+    text-align: left;
+    max-width: 400px;
+    margin: 1.5rem auto 0;
+  }
+
+  .teaching__grid, 
+  .projects__grid,
+  .education__grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .research__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .section {
+    padding: 4rem 1.5rem;
+  }
+
+  .education__timeline {
+    padding-left: 2rem;
+  }
+
+  .education__item::before {
+    left: -2rem;
+  }
+
+  .timeline-svg-container {
+    display: none;
+  }
+}
+
+/* --- Small Phones (max-width: 480px) --- */
+@media (max-width: 480px) {
+  .hero__title {
+    font-size: 2.2rem;
+  }
+
+  .hero__ctas {
+    flex-direction: column;
+    width: 100%;
+    padding: 0 2rem;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .research__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pub__item {
+    padding: 1.25rem;
+  }
+
+  .pub__title {
+    font-size: 0.9rem;
+  }
+
+  .nav__logo {
+    font-size: 1rem;
+  }
+
+  .section__title {
+    font-size: 1.6rem;
+  }
+
+  .footer__links {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
