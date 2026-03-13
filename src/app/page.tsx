@@ -41,7 +41,20 @@ export default function Home() {
     /* ============================================================
        CANVAS PRELOADER ANIMATION
        ============================================================ */
+    const isMobile = window.innerWidth <= 768;
     const canvas = document.getElementById("hero-canvas") as HTMLCanvasElement;
+
+    if (isMobile) {
+      // Mobile: Skip animation for speed
+      const preloader = document.querySelector<HTMLElement>(".preloader");
+      if (preloader) preloader.style.display = "none";
+      
+      gsap.set(".main-content", { opacity: 1 });
+      initLocomotive();
+      initAnimations();
+      return; 
+    }
+
     if (canvas) {
       const context = canvas.getContext("2d");
       canvas.width = window.innerWidth;
