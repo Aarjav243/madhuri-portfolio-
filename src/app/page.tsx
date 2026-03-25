@@ -632,8 +632,8 @@ export default function Home() {
       "@type": "CollegeOrUniversity",
       "name": "IFMR Graduate School of Business, Krea University"
     },
-    "url": "https://madhuri-portfolio.vercel.app/",
-    "image": "https://madhuri-portfolio.vercel.app/madhuri_photo.jpg",
+    "url": "https://madhuri-portfolio-chi.vercel.app/",
+    "image": "https://madhuri-portfolio-chi.vercel.app/madhuri_photo.jpg",
     "sameAs": [
       "https://www.linkedin.com/in/madhuri-saripalle-382a3b10/",
       "https://scholar.google.com/citations?user=O0kzVucAAAAJ"

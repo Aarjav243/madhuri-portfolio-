@@ -26,13 +26,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://madhuri-portfolio.vercel.app/", // Assuming this based on context, user can update
+    url: "https://madhuri-portfolio-chi.vercel.app/",
     title: "Dr. Madhuri Saripalle | Professor & Applied Economist",
     description: "Academic portfolio of Dr. Madhuri Saripalle, specializing in Industrial Organization, Agri-business, and Supply Chain Management.",
     siteName: "Dr. Madhuri Saripalle Portfolio",
     images: [
       {
-        url: "/madhuri_photo.jpg",
+        url: "https://madhuri-portfolio-chi.vercel.app/madhuri_photo.jpg",
         width: 1200,
         height: 630,
         alt: "Dr. Madhuri Saripalle",
