@@ -623,8 +623,30 @@ export default function Home() {
     };
   });
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Dr. Madhuri Saripalle",
+    "jobTitle": "Professor of Economics",
+    "affiliation": {
+      "@type": "CollegeOrUniversity",
+      "name": "IFMR Graduate School of Business, Krea University"
+    },
+    "url": "https://madhuri-portfolio.vercel.app/",
+    "image": "https://madhuri-portfolio.vercel.app/madhuri_photo.jpg",
+    "sameAs": [
+      "https://www.linkedin.com/in/madhuri-saripalle-382a3b10/",
+      "https://scholar.google.com/citations?user=O0kzVucAAAAJ"
+    ],
+    "description": "Professor at IFMR GSB, Krea University, specializing in Industrial Organization, Agri-business, and Supply Chain Management."
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* ============================
           PRELOADER
           ============================ */}
@@ -665,7 +687,7 @@ export default function Home() {
       {/* ============================
           MAIN CONTENT
           ============================ */}
-      <div
+      <main
         className="main-content"
         ref={scrollContainerRef}
         data-scroll-container
@@ -1630,7 +1652,7 @@ export default function Home() {
             reserved.
           </p>
         </footer>
-      </div>
+      </main>
     </>
   );
 }

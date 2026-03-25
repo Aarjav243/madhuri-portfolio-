@@ -6,9 +6,56 @@ import CustomCursor from "@/components/CustomCursor";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "Dr. Madhuri Saripalle | Professor of Economics Portfolio",
+  title: "Dr. Madhuri Saripalle | Professor & Applied Economist Portfolio",
   description:
-    "Academic portfolio of Dr. Madhuri Saripalle — Professor at IFMR GSB, Krea University, specializing in Industrial Organization, Agri-business, and Supply Chain Management.",
+    "Official portfolio of Dr. Madhuri Saripalle — Professor at IFMR GSB, Krea University. Expert in Industrial Organization, Agricultural Economics, and Supply Chain Management.",
+  keywords: [
+    "Dr. Madhuri Saripalle",
+    "Madhuri Saripalle",
+    "Professor of Economics",
+    "Agricultural Economics",
+    "Industrial Organization",
+    "Supply Chain Management",
+    "IFMR GSB",
+    "Krea University",
+    "Agri-business researcher India",
+    "Applied Economics Professor",
+  ],
+  authors: [{ name: "Dr. Madhuri Saripalle" }],
+  creator: "Dr. Madhuri Saripalle",
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://madhuri-portfolio.vercel.app/", // Assuming this based on context, user can update
+    title: "Dr. Madhuri Saripalle | Professor & Applied Economist",
+    description: "Academic portfolio of Dr. Madhuri Saripalle, specializing in Industrial Organization, Agri-business, and Supply Chain Management.",
+    siteName: "Dr. Madhuri Saripalle Portfolio",
+    images: [
+      {
+        url: "/madhuri_photo.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Dr. Madhuri Saripalle",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Dr. Madhuri Saripalle | Professor & Applied Economist",
+    description: "Professor at IFMR GSB, Krea University. Expert in Industrial Organization and Agri-business.",
+    images: ["/madhuri_photo.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({
