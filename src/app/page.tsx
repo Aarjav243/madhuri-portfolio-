@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { Linkedin, Mail } from "lucide-react";
-import { SiGooglescholar } from "react-icons/si";
+import { SiGooglescholar, SiResearchgate } from "react-icons/si";
 
 /* ------------------------------------------------------------------ */
 /* Declare globals loaded via CDN <script> tags                       */
@@ -38,111 +38,11 @@ export default function Home() {
 
     gsap.registerPlugin(ScrollTrigger);
 
-    /* ============================================================
-       CANVAS PRELOADER ANIMATION
-       ============================================================ */
-    const isMobile = window.innerWidth <= 768;
-    const canvas = document.getElementById("hero-canvas") as HTMLCanvasElement;
-
-    if (isMobile) {
-      // Mobile: Skip animation for speed
-      const preloader = document.querySelector<HTMLElement>(".preloader");
-      if (preloader) preloader.style.display = "none";
-      
-      gsap.set(".main-content", { opacity: 1 });
-      initLocomotive();
-      initAnimations();
-      return; 
-    }
-
-    if (canvas) {
-      const context = canvas.getContext("2d");
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-
-      const frameCount = 62;
-      const currentFrame = (index: number) => (
-        `/madhuri_animation/ezgif-frame-${(index + 1).toString().padStart(3, "0")}.png`
-      );
-
-      const images: HTMLImageElement[] = [];
-      const sequence = { frame: 0 };
-
-      // Make sure images load initially
-      let loadedImages = 0;
-      let animationStarted = false;
-
-      for (let i = 0; i < frameCount; i++) {
-        const img = new window.Image();
-        img.onload = () => {
-          loadedImages++;
-          if (loadedImages === frameCount && !animationStarted) {
-            animationStarted = true;
-            // Brief delay to ensure first frame is ready
-            setTimeout(startAnimation, 100);
-          }
-        };
-        img.src = currentFrame(i);
-        images.push(img);
-      }
-
-      function render() {
-        if (!context || !canvas) return;
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        const img = images[sequence.frame];
-        if (img && img.complete) {
-          const hRatio = canvas.width / img.width;
-          const vRatio = canvas.height / img.height;
-          const ratio = Math.max(hRatio, vRatio);
-          const centerShift_x = (canvas.width - img.width * ratio) / 2;
-          const centerShift_y = (canvas.height - img.height * ratio) / 2;
-          context.drawImage(img, 
-            0, 0, img.width, img.height,
-            centerShift_x, centerShift_y, img.width * ratio, img.height * ratio
-          );
-        }
-      }
-
-      function startAnimation() {
-        // Initial render for frame 0
-        render();
-
-        gsap.to(sequence, {
-          frame: frameCount - 1,
-          snap: "frame",
-          ease: "none",
-          duration: 3, // Adjusted for 62 frames
-          onUpdate: render,
-          onComplete: () => {
-            // Smooth transition to main content
-            gsap.to(".preloader", {
-              opacity: 0,
-              duration: 1.2,
-              ease: "power2.inOut",
-              onComplete: () => {
-                const preloader = document.querySelector<HTMLElement>(".preloader");
-                if (preloader) preloader.style.display = "none";
-
-                gsap.to(".main-content", {
-                  opacity: 1,
-                  duration: 1.5,
-                  ease: "expo.out",
-                });
-
-                initLocomotive();
-                initAnimations();
-              },
-            });
-          },
-        });
-      }
-
-      window.addEventListener("resize", () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        render();
-      });
-    }
+    initLocomotive();
+    initAnimations();
+    
+    // Ensure content is visible immediately since preloader is removed
+    gsap.set(".main-content", { opacity: 1 });
 
     /* ============================================================
        LOCOMOTIVE SCROLL
@@ -635,8 +535,9 @@ export default function Home() {
     "url": "https://madhuri-portfolio-chi.vercel.app/",
     "image": "https://madhuri-portfolio-chi.vercel.app/madhuri_photo.jpg",
     "sameAs": [
-      "https://www.linkedin.com/in/madhuri-saripalle-382a3b10/",
-      "https://scholar.google.com/citations?user=O0kzVucAAAAJ"
+      "https://krea.edu.in/ifmrgsb/prof-madhuri-saripalle/",
+      "https://scholar.google.com/citations?user=O0kzVucAAAAJ&hl=en",
+      "https://www.researchgate.net/profile/Madhuri-Saripalle-2"
     ],
     "description": "Professor at IFMR GSB, Krea University, specializing in Industrial Organization, Agri-business, and Supply Chain Management."
   };
@@ -647,12 +548,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      {/* ============================
-          PRELOADER
-          ============================ */}
-      <div className="preloader" style={{ background: "#000", padding: 0 }}>
-        <canvas id="hero-canvas" style={{ width: "100vw", height: "100vh", display: "block", objectFit: "cover" }} />
-      </div>
+
 
       {/* ============================
           NAVIGATION
@@ -719,13 +615,31 @@ export default function Home() {
                 <Mail size={20} />
               </a>
               <a
-                href="https://www.linkedin.com/in/madhuri-saripalle-382a3b10/"
+                href="https://krea.edu.in/ifmrgsb/prof-madhuri-saripalle/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn--icon btn--outline magnetic"
-                title="LinkedIn Profile"
+                title="Krea Profile"
               >
                 <Linkedin size={20} />
+              </a>
+              <a
+                href="https://scholar.google.com/citations?user=O0kzVucAAAAJ&hl=en"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn--icon btn--outline magnetic"
+                title="Google Scholar"
+              >
+                <SiGooglescholar size={20} />
+              </a>
+              <a
+                href="https://www.researchgate.net/profile/Madhuri-Saripalle-2"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn--icon btn--outline magnetic"
+                title="ResearchGate"
+              >
+                <SiResearchgate size={20} />
               </a>
             </div>
           </div>
@@ -1638,13 +1552,31 @@ export default function Home() {
               <Mail size={18} />
             </a>
             <a
-              href="https://www.linkedin.com/in/madhuri-saripalle-382a3b10/"
+              href="https://krea.edu.in/ifmrgsb/prof-madhuri-saripalle/"
               target="_blank"
               rel="noopener noreferrer"
               className="footer__icon"
-              aria-label="LinkedIn"
+              aria-label="Krea Profile"
             >
               <Linkedin size={18} />
+            </a>
+            <a
+              href="https://scholar.google.com/citations?user=O0kzVucAAAAJ&hl=en"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer__icon"
+              aria-label="Google Scholar"
+            >
+              <SiGooglescholar size={18} />
+            </a>
+            <a
+              href="https://www.researchgate.net/profile/Madhuri-Saripalle-2"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer__icon"
+              aria-label="ResearchGate"
+            >
+              <SiResearchgate size={18} />
             </a>
           </div>
           <p className="footer__copy">
