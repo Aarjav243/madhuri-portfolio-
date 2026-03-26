@@ -589,61 +589,7 @@ export default function Home() {
         data-scroll-container
       >
         {/* ── HERO ── */}
-        <section className="hero" id="hero" data-scroll-section>
-          
-          <div className="hero__overlay" />
-          <div className="glow-orb glow-orb--1" />
-          <div className="glow-orb glow-orb--2" />
-          <div className="glow-orb glow-orb--3" />
-          <div className="hero__content">
-            <h1 className="hero__title">Dr. Madhuri Saripalle</h1>
-            <p className="hero__subtitle">
-              Professor | PhD in Agricultural Economics | Applied Economics
-            </p>
-            <div className="hero__ctas">
-              <a href="#publications" className="btn btn--primary" onClick={(e) => handleNavClick(e, "#publications")}>
-                View Research
-              </a>
-              <a href="#contact" className="btn btn--outline" onClick={(e) => handleNavClick(e, "#contact")}>
-                Contact
-              </a>
-              <a
-                href="mailto:madhuri.saripalle@krea.edu.in"
-                className="btn btn--icon btn--outline magnetic"
-                title="Email Me"
-              >
-                <Mail size={20} />
-              </a>
-              <a
-                href="https://krea.edu.in/ifmrgsb/prof-madhuri-saripalle/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn--icon btn--outline magnetic"
-                title="Krea Profile"
-              >
-                <Linkedin size={20} />
-              </a>
-              <a
-                href="https://scholar.google.com/citations?user=O0kzVucAAAAJ&hl=en"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn--icon btn--outline magnetic"
-                title="Google Scholar"
-              >
-                <SiGooglescholar size={20} />
-              </a>
-              <a
-                href="https://www.researchgate.net/profile/Madhuri-Saripalle-2"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn--icon btn--outline magnetic"
-                title="ResearchGate"
-              >
-                <SiResearchgate size={20} />
-              </a>
-            </div>
-          </div>
-        </section>
+
 
         {/* ── ABOUT / PROFILE ── */}
         <section className="section about" id="about" data-scroll-section>
@@ -1092,109 +1038,11 @@ export default function Home() {
 
                 {[
   {
-    "title": "Determinants of profitability in the Indian logistics industry",
-    "authors": "M Saripalle",
-    "journal": "International Journal of Logistics Economics and Globalisation 7 (1), 13-27",
-    "year": "2018",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:_FxGoFyzp5QC"
-  },
-  {
-    "title": "Jasmine cultivation in Tamil Nadu: Market structure and pricing",
-    "authors": "M Saripalle",
-    "journal": "World Development Perspectives 1, 12-14",
-    "year": "2016",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:WF5omc3nYNoC"
-  },
-  {
-    "title": "Market awareness and profitability: case study of mango production in Karnataka, India",
-    "authors": "M Saripalle",
-    "journal": "",
-    "year": "2019",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:Se3iqnhoufwC"
-  },
-  {
-    "title": "Labour practices in India",
-    "authors": "D Nathan, M Saripalle, L Gurunathan",
-    "journal": "ILO Working Papers",
-    "year": "2016",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:5nxA0vEk-isC"
-  },
-  {
-    "title": "Learning across policy regimes: a case study of the Indian automobile industry",
-    "authors": "M Saripalle",
-    "journal": "International journal of automotive technology and management 12 (2), 197-217",
-    "year": "2012",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:zYLM7Y9cAGgC"
-  },
-  {
-    "title": "The Indian Auto Component Industry: Competing through Costs or Capabilities",
-    "authors": "M Saripalle",
-    "journal": "IIMB Management Review 20 (4), 358-373",
-    "year": "2008",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:LkGwnXOMwfcC"
-  },
-  {
-    "title": "Tamil Nadu's Electronics Industry: Lessons for'Make in India'",
-    "authors": "M Saripalle",
-    "journal": "Economic and Political Weekly, 99-103",
-    "year": "2015",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:Y0pCki6q_DkC"
-  },
-  {
-    "title": "Learning and capability acquisition: A case study of the Indian automobile industry",
-    "authors": "M Saripalle",
-    "journal": "Madras School of Economics",
-    "year": "2012",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:d1gkVwhDpl0C"
-  },
-  {
-    "title": "The determinants of firm’s growth in the telecommunication services industry: Empirical evidence from India",
-    "authors": "S Somya, M Saripalle",
-    "journal": "Journal of Quantitative Economics 21 (1), 193-211",
-    "year": "2023",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:3fE2CSJIrl8C"
-  },
-  {
-    "title": "Integration into Global Automotive Value Chains: Co-Evolution of Firm and Market Capabilities",
-    "authors": "M Saripalle",
-    "journal": "International Trade and Industrial Development in India: Emerging Trends&nbsp;…",
-    "year": "2016",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:ufrVoPGSRksC"
-  },
-  {
-    "title": "Learning across policy regimes: The impact of protection vis-à-vis competition in the Indian automotive industry",
-    "authors": "M Saripalle",
-    "journal": "University of Connecticut",
-    "year": "2006",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:u5HHmVD_uO8C"
-  },
-  {
     "title": "Driving productivity: a comparison of the Indian automobile manufacturers and component suppliers",
     "authors": "M Saripalle, P Gupta",
     "journal": "Asian Journal of Technology Innovation 33 (3), 1106-1136",
     "year": "2025",
     "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:qxL8FJ1GzNcC"
-  },
-  {
-    "title": "Production, prices and supply chain disruption among farmers during Covid-19: empirical evidence from India",
-    "authors": "M Saripalle, VC Subramanian",
-    "journal": "",
-    "year": "2022",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:M3ejUd6NZC8C"
-  },
-  {
-    "title": "Fiscal instruments for climate friendly industrial development in tamil nadu",
-    "authors": "DK Srivastava, KR Shanmugam, KSK Kumar, M Saripalle",
-    "journal": "Report",
-    "year": "2014",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:YsMSGLbcyi4C"
-  },
-  {
-    "title": "Export Competitiveness in the Indian auto-component industry: Does Low Wage Cost matter?",
-    "authors": "M Saripalle",
-    "journal": "Madras School of Economics",
-    "year": "2007",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:IjCSPb-OGe4C"
   },
   {
     "title": "Impact of COVID-19 on production decisions of marginal, small and medium farmers: empirical evidence from South India",
@@ -1204,27 +1052,6 @@ export default function Home() {
     "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:4TOpqqG69KYC"
   },
   {
-    "title": "Supplier relations in the Indian automotive industry: arms length to long-term commitment",
-    "authors": "M Saripalle",
-    "journal": "online] http://mpra. ub. uni-muenchen. de/1699/1/MPRA_paper_1699. pdf",
-    "year": "2006",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:9yKSN-GCB0IC"
-  },
-  {
-    "title": "Competing through low labour costs versus capabilities",
-    "authors": "M Saripalle, B Line",
-    "journal": "Business Line",
-    "year": "2004",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:u-x6o8ySG0sC"
-  },
-  {
-    "title": "Inter-firm relationship and governance structure: A study of Bhilai Steel Plant and its ancillaries",
-    "authors": "M Saripalle",
-    "journal": "Economic and Political Weekly, M106-M113",
-    "year": "1999",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:UebtZRa9Y70C"
-  },
-  {
     "title": "Market Structure, Profitability and Regulation of Telecommunication Industry in India",
     "authors": "M Saripalle, S Somya",
     "journal": "Global Business Review, 09721509241232198",
@@ -1232,7 +1059,21 @@ export default function Home() {
     "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:_kc_bZDykSQC"
   },
   {
-    "title": "Determinants of Employment in the Indian Automobile Industry",
+    "title": "The determinants of firm’s growth in the telecommunication services industry: Empirical evidence from India",
+    "authors": "S Somya, M Saripalle",
+    "journal": "Journal of Quantitative Economics 21 (1), 193-211",
+    "year": "2023",
+    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:3fE2CSJIrl8C"
+  },
+  {
+    "title": "Production, prices and supply chain disruption among farmers during Covid-19: empirical evidence from India",
+    "authors": "M Saripalle, VC Subramanian",
+    "journal": "",
+    "year": "2022",
+    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:M3ejUd6NZC8C"
+  },
+  {
+    "title": "Determinants of Employment in the Indian automobile industry",
     "authors": "M Saripalle",
     "journal": "Industrialisation for Employment and Growth in India: Lessons from Small&nbsp;…",
     "year": "2021",
@@ -1253,11 +1094,46 @@ export default function Home() {
     "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&cstart=20&pagesize=80&citation_for_view=O0kzVucAAAAJ:8k81kl-MbHgC"
   },
   {
+    "title": "Market awareness and profitability: case study of mango production in Karnataka, India",
+    "authors": "M Saripalle",
+    "journal": "",
+    "year": "2019",
+    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:Se3iqnhoufwC"
+  },
+  {
     "title": "The Macro-economic impact of financial crisis on private R&D effort in Indian Manufacturing sector: a sectoral analysis",
     "authors": "M Saripalle",
     "journal": "",
     "year": "2019",
     "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&cstart=20&pagesize=80&citation_for_view=O0kzVucAAAAJ:hqOjcs7Dif8C"
+  },
+  {
+    "title": "Determinants of profitability in the Indian logistics industry",
+    "authors": "M Saripalle",
+    "journal": "International Journal of Logistics Economics and Globalisation 7 (1), 13-27",
+    "year": "2018",
+    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:_FxGoFyzp5QC"
+  },
+  {
+    "title": "Jasmine cultivation in Tamil Nadu: Market structure and pricing",
+    "authors": "M Saripalle",
+    "journal": "World Development Perspectives 1, 12-14",
+    "year": "2016",
+    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:WF5omc3nYNoC"
+  },
+  {
+    "title": "Labour practices in India",
+    "authors": "D Nathan, M Saripalle, L Gurunathan",
+    "journal": "ILO Working Papers",
+    "year": "2016",
+    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:5nxA0vEk-isC"
+  },
+  {
+    "title": "Integration into Global Automotive Value Chains: Co-Evolution of Firm and Market Capabilities",
+    "authors": "M Saripalle",
+    "journal": "International Trade and Industrial Development in India: Emerging Trends&nbsp;…",
+    "year": "2016",
+    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:ufrVoPGSRksC"
   },
   {
     "title": "ILO Asia-Pacific Working Paper Series",
@@ -1267,6 +1143,13 @@ export default function Home() {
     "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&cstart=20&pagesize=80&citation_for_view=O0kzVucAAAAJ:dhFuZR0502QC"
   },
   {
+    "title": "Tamil Nadu's Electronics Industry: Lessons for'Make in India'",
+    "authors": "M Saripalle",
+    "journal": "Economic and Political Weekly, 99-103",
+    "year": "2015",
+    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:Y0pCki6q_DkC"
+  },
+  {
     "title": "R&D Spillovers Across the Supply Chain: Evidence from the Indian Automobile Industry",
     "authors": "M Saripalle",
     "journal": "Globalization of Indian Industries: Productivity, Exports and Investment, 43-70",
@@ -1274,11 +1157,67 @@ export default function Home() {
     "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&cstart=20&pagesize=80&citation_for_view=O0kzVucAAAAJ:eQOLeE2rZwMC"
   },
   {
+    "title": "Fiscal instruments for climate friendly industrial development in tamil nadu",
+    "authors": "DK Srivastava, KR Shanmugam, KSK Kumar, M Saripalle",
+    "journal": "Report",
+    "year": "2014",
+    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:YsMSGLbcyi4C"
+  },
+  {
+    "title": "Learning across policy regimes: a case study of the Indian automobile industry",
+    "authors": "M Saripalle",
+    "journal": "International journal of automotive technology and management 12 (2), 197-217",
+    "year": "2012",
+    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:zYLM7Y9cAGgC"
+  },
+  {
+    "title": "Learning and capability acquisition: A case study of the Indian automobile industry",
+    "authors": "M Saripalle",
+    "journal": "Madras School of Economics",
+    "year": "2012",
+    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:d1gkVwhDpl0C"
+  },
+  {
+    "title": "The Indian Auto Component Industry: Competing through Costs or Capabilities",
+    "authors": "M Saripalle",
+    "journal": "IIMB Management Review 20 (4), 358-373",
+    "year": "2008",
+    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:LkGwnXOMwfcC"
+  },
+  {
+    "title": "Export Competitiveness in the Indian auto-component industry: Does Low Wage Cost matter?",
+    "authors": "M Saripalle",
+    "journal": "Madras School of Economics",
+    "year": "2007",
+    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:IjCSPb-OGe4C"
+  },
+  {
+    "title": "Learning across policy regimes: The impact of protection vis-à-vis competition in the Indian automotive industry",
+    "authors": "M Saripalle",
+    "journal": "University of Connecticut",
+    "year": "2006",
+    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:u5HHmVD_uO8C"
+  },
+  {
+    "title": "Supplier relations in the Indian automotive industry: arms length to long-term commitment",
+    "authors": "M Saripalle",
+    "journal": "online] http://mpra. ub. uni-muenchen. de/1699/1/MPRA_paper_1699. pdf",
+    "year": "2006",
+    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:9yKSN-GCB0IC"
+  },
+  {
     "title": "Learning and capability acquisition: Growth of the Indian automobile industry",
     "authors": "M Saripalle",
     "journal": "University of Connecticut",
     "year": "2005",
     "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&cstart=20&pagesize=80&citation_for_view=O0kzVucAAAAJ:2osOgNQ5qMEC"
+  },
+  {
+    "title": "Competing through low labour costs versus capabilities",
+    "authors": "M Saripalle, B Line",
+    "journal": "Business Line",
+    "year": "2004",
+    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:u-x6o8ySG0sC"
   },
   {
     "title": "The Economic Impact of Continuing Operations of the University of Connecticut Health Center (Second Report)",
@@ -1293,6 +1232,13 @@ export default function Home() {
     "journal": "University of Connecticut, Connecticut Center for Economic Analysis",
     "year": "2001",
     "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&cstart=20&pagesize=80&citation_for_view=O0kzVucAAAAJ:Wp0gIr-vW9MC"
+  },
+  {
+    "title": "Inter-firm relationship and governance structure: A study of Bhilai Steel Plant and its ancillaries",
+    "authors": "M Saripalle",
+    "journal": "Economic and Political Weekly, M106-M113",
+    "year": "1999",
+    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:UebtZRa9Y70C"
   },
   {
     "title": "PROMOTING TECHNOLOGIES FOR SUSTAINABLE AGRICULTURE: LESSONS FROM FARMERS IN SOUTH INDIA1",
@@ -1360,6 +1306,12 @@ export default function Home() {
                 <div className="pub__category" style={{ marginTop: '2rem' }}>Book Chapters</div>
                 {[
                   {
+                    title: "Determinants of Employment in the Indian Automobile Industry",
+                    book: "Industrialisation for Employment and Growth in India. Cambridge University Press",
+                    year: "2021",
+                    authors: "Saripalle, M."
+                  },
+                  {
                     title: "Mango Value Chain in India",
                     book: "Transforming Agriculture in South Asia. Routledge",
                     year: "2020",
@@ -1370,12 +1322,6 @@ export default function Home() {
                     book: "State Capital Nexus: Implications for Labour. Hyderabad, India",
                     year: "2020",
                     authors: "Saripalle, M., & Chebolu-Subramanyan, Vijaya"
-                  },
-                  {
-                    title: "Determinants of Employment in the Indian Automobile Industry",
-                    book: "Industrialisation for Employment and Growth in India. Cambridge University Press",
-                    year: "2021",
-                    authors: "Saripalle, M."
                   },
                   {
                     title: "Integration into global automotive value chains: co-evolution of firm and market capabilities",

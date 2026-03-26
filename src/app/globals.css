@@ -38,7 +38,7 @@
 html {
   scroll-behavior: auto;
   /* locomotive handles smooth scroll */
-  cursor: none;
+
 }
 
 body {
@@ -68,11 +68,11 @@ body {
 a {
   text-decoration: none;
   color: inherit;
-  cursor: none;
+
 }
 
 button {
-  cursor: none;
+
 }
 
 img {
@@ -351,7 +351,7 @@ img {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   transition: all 0.4s ease;
-  cursor: none;
+
 }
 
 .hero__title:hover {
@@ -495,7 +495,7 @@ img {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  cursor: none;
+
   transition: text-shadow 0.4s ease, color 0.4s ease;
 }
 
@@ -528,7 +528,7 @@ img {
   transition: all var(--transition);
   will-change: transform, opacity, box-shadow;
   transform: translateZ(0);
-  cursor: none;
+
 }
 
 .glass-card:hover {
@@ -807,7 +807,7 @@ img {
   font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 0.5rem;
-  cursor: none;
+
   transition: text-shadow 0.4s ease, color 0.4s ease;
 }
 
@@ -952,7 +952,7 @@ img {
   font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 0.5rem;
-  cursor: none;
+
   transition: text-shadow 0.4s ease, color 0.4s ease;
 }
 
@@ -1030,7 +1030,7 @@ img {
   font-size: 0.9rem;
   font-weight: 500;
   color: var(--text-primary);
-  cursor: none;
+
   transition: text-shadow 0.4s ease, color 0.4s ease;
 }
 
@@ -1106,7 +1106,7 @@ img {
   color: var(--text-primary);
   line-height: 1.5;
   margin-bottom: 0.35rem;
-  cursor: none;
+
   transition: text-shadow 0.4s ease, color 0.4s ease;
 }
 
@@ -1120,7 +1120,7 @@ img {
 
 .project__title {
   transition: text-shadow 0.4s ease, color 0.4s ease;
-  cursor: none;
+
 }
 
 .pub__year {
