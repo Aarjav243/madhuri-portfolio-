@@ -109,15 +109,15 @@ export default function RootLayout({
         {/* External libs loaded after content */}
         <Script
           src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"
-          strategy="beforeInteractive"
+          strategy="afterInteractive"
         />
         <Script
           src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"
-          strategy="beforeInteractive"
+          strategy="afterInteractive"
         />
         <Script
           src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"
-          strategy="beforeInteractive"
+          strategy="afterInteractive"
         />
       </body>
     </html>

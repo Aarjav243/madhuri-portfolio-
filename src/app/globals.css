@@ -1368,9 +1368,9 @@ html.has-scroll-smooth body {
   background: rgba(255, 255, 255, 0.15);
 }
 
-/* Main content wrapper – initially hidden */
+/* Main content wrapper */
 .main-content {
-  opacity: 0;
+  opacity: 1;
 }
 
 .preloader {

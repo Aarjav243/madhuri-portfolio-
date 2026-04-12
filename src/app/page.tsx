@@ -22,14 +22,35 @@ export default function Home() {
 
   useEffect(() => {
     /* Wait for GSAP + Locomotive CDN scripts to load */
+    let initialized = false;
     const waitForLibs = setInterval(() => {
       if (window.gsap && window.ScrollTrigger && window.LocomotiveScroll) {
         clearInterval(waitForLibs);
+        initialized = true;
         initSite();
       }
     }, 100);
 
-    return () => clearInterval(waitForLibs);
+    /* Fallback: if libs don't load in 5s, skip animations but show content */
+    const fallbackTimeout = setTimeout(() => {
+      if (!initialized) {
+        clearInterval(waitForLibs);
+        const main = document.querySelector<HTMLElement>(".main-content");
+        if (main) main.style.opacity = "1";
+        /* Make all initially-hidden elements visible */
+        document.querySelectorAll<HTMLElement>(
+          ".about__bio > *, .about__list li, .research__item, .project__card, .pub__item, .pub__category, .conf__item, .teaching__card"
+        ).forEach((el) => {
+          el.style.opacity = "1";
+          el.style.transform = "none";
+        });
+      }
+    }, 5000);
+
+    return () => {
+      clearInterval(waitForLibs);
+      clearTimeout(fallbackTimeout);
+    };
   }, []);
 
   function initSite() {
@@ -858,19 +879,21 @@ export default function Home() {
           <div className="section__container">
             <div className="section__label">Interests</div>
             <div className="section__title">Research Interests</div>
-            <div className="research__grid">
-              {[
-                { icon: "🏭", name: "Industrial Organization" },
-                { icon: "📊", name: "Technology & Productivity" },
-                { icon: "🚜", name: "Agri-business" },
-                { icon: "📦", name: "Supply Chain Management" },
-              ].map((item) => (
-                <div className="research__item glass-card" key={item.name}>
-                  <div className="glimmer-overlay" />
-                  <span className="research__icon">{item.icon}</span>
-                  <div className="research__name">{item.name}</div>
-                </div>
-              ))}
+            <div className="research__interests-block glass-card" style={{ padding: '2rem 2.5rem', maxWidth: '760px' }}>
+              <div className="glimmer-overlay" />
+              <p style={{ fontSize: '1.05rem', color: 'var(--text-primary)', marginBottom: '1.2rem', fontWeight: 500 }}>
+                Applied Industrial Organisation and Development Economics, focusing on:
+              </p>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', fontSize: '0.97rem', color: 'var(--text-secondary)' }}>
+                  <span style={{ color: 'var(--accent-blue)', fontWeight: 600, flexShrink: 0 }}>—</span>
+                  Agri-business, supply chains, and sustainable practices
+                </li>
+                <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', fontSize: '0.97rem', color: 'var(--text-secondary)' }}>
+                  <span style={{ color: 'var(--accent-blue)', fontWeight: 600, flexShrink: 0 }}>—</span>
+                  Industry studies of firm growth, productivity, and sustainable mobility solutions
+                </li>
+              </ul>
             </div>
           </div>
         </section>
@@ -1034,320 +1057,78 @@ export default function Home() {
             <div className="section__title">Selected Publications</div>
             <div className="publications__list-wrapper">
               <div className="publications__list">
-                <div className="pub__category">Peer-Reviewed Journals</div>
-
                 {[
   {
-    "title": "Driving productivity: a comparison of the Indian automobile manufacturers and component suppliers",
-    "authors": "M Saripalle, P Gupta",
-    "journal": "Asian Journal of Technology Innovation 33 (3), 1106-1136",
-    "year": "2025",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:qxL8FJ1GzNcC"
+    citation: "Saripalle, M., & Gupta, P. (2024). Driving productivity: A comparison of the Indian automobile manufacturers and component suppliers.",
+    journal: "Asian Journal of Technology Innovation",
+    meta: "DOI (Scopus Q2), Taylor and Francis",
+    url: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:qxL8FJ1GzNcC"
   },
   {
-    "title": "Impact of COVID-19 on production decisions of marginal, small and medium farmers: empirical evidence from South India",
-    "authors": "M Saripalle, V Chebolu-Subramanian",
-    "journal": "Journal of Agribusiness in Developing and Emerging Economies 15 (6), 1081-1100",
-    "year": "2025",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:4TOpqqG69KYC"
+    citation: "Saripalle, M., & Chebolu-Subramanyan, Vijaya. (2023). Impact of COVID-19 on production decisions of small farmers: Evidence from South India.",
+    journal: "Journal of Agribusiness in Developing and Emerging Economies",
+    meta: "DOI (Scopus Q1), Emerald Publishing",
+    url: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:4TOpqqG69KYC"
   },
   {
-    "title": "Market Structure, Profitability and Regulation of Telecommunication Industry in India",
-    "authors": "M Saripalle, S Somya",
-    "journal": "Global Business Review, 09721509241232198",
-    "year": "2024",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:_kc_bZDykSQC"
+    citation: "Saripalle, M., & Somya, S. (2024). Market structure, profitability, and regulation in the Indian telecom sector.",
+    journal: "Global Business Review, Sage",
+    meta: "DOI (ABDC-C)",
+    url: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:_kc_bZDykSQC"
   },
   {
-    "title": "The determinants of firm’s growth in the telecommunication services industry: Empirical evidence from India",
-    "authors": "S Somya, M Saripalle",
-    "journal": "Journal of Quantitative Economics 21 (1), 193-211",
-    "year": "2023",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:3fE2CSJIrl8C"
+    citation: "Somya, S., Saripalle, M. (2023). Firm growth in telecommunications: Empirical evidence from India.",
+    journal: "Journal of Quantitative Economics, 21(1) 193\u2013211, Springer",
+    meta: "DOI (ABDC-B)",
+    url: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:3fE2CSJIrl8C"
   },
   {
-    "title": "Production, prices and supply chain disruption among farmers during Covid-19: empirical evidence from India",
-    "authors": "M Saripalle, VC Subramanian",
-    "journal": "",
-    "year": "2022",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:M3ejUd6NZC8C"
+    citation: "Saripalle, M. (2019). Market awareness and profitability: case study of Mango production in Karnataka.",
+    journal: "Economic and Political Weekly (ABDC-B), Vol. LIV (4), p. 52\u201359, Sameeksha Trust, Mumbai",
+    meta: "",
+    url: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:Se3iqnhoufwC"
   },
   {
-    "title": "Determinants of Employment in the Indian automobile industry",
-    "authors": "M Saripalle",
-    "journal": "Industrialisation for Employment and Growth in India: Lessons from Small&nbsp;…",
-    "year": "2021",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&cstart=20&pagesize=80&citation_for_view=O0kzVucAAAAJ:kNdYIx-mwKoC"
+    citation: "Saripalle, M. (2016). Jasmine Cultivation in Tamil Nadu: Market Structure and Pricing.",
+    journal: "World Development Perspectives, 1, pp. 12\u201314, Elsevier",
+    meta: "DOI (Scopus-Q1)",
+    url: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:WF5omc3nYNoC"
   },
   {
-    "title": "Simultaneity between Mobile Penetration and Economic Growth: A Panel data analysis of Indian States",
-    "authors": "S Somya, M Saripalle",
-    "journal": "",
-    "year": "2021",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&cstart=20&pagesize=80&citation_for_view=O0kzVucAAAAJ:Zph67rFs4hoC"
+    citation: "Saripalle, M. (2015). Tamil Nadu\u2019s Electronics Industry: Lessons for Make in India.",
+    journal: "Economic and Political Weekly, Volume 1, Numbers 26 & 27 (ABDC-B)",
+    meta: "",
+    url: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:Y0pCki6q_DkC"
   },
   {
-    "title": "Mango value chains in India",
-    "authors": "M Saripalle, E Kannan",
-    "journal": "Transforming Agriculture in South Asia, 211-231",
-    "year": "2020",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&cstart=20&pagesize=80&citation_for_view=O0kzVucAAAAJ:8k81kl-MbHgC"
+    citation: "Saripalle, M. (2012). Learning across policy regimes: Case study of the Indian automobile Industry.",
+    journal: "International Journal of Automotive Technology and Management, 12(2), pp. 197\u2013217, Inderscience",
+    meta: "DOI (ABDC-B)",
+    url: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:zYLM7Y9cAGgC"
   },
   {
-    "title": "Market awareness and profitability: case study of mango production in Karnataka, India",
-    "authors": "M Saripalle",
-    "journal": "",
-    "year": "2019",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:Se3iqnhoufwC"
+    citation: "Saripalle, M. (2018). Determinants of Profitability in the Indian Logistics Industry.",
+    journal: "International Journal of Logistics, Economics and Globalization, Vol. 7(1), pp. 13\u201327, Inderscience",
+    meta: "DOI (ABDC-C)",
+    url: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:_FxGoFyzp5QC"
   },
   {
-    "title": "The Macro-economic impact of financial crisis on private R&D effort in Indian Manufacturing sector: a sectoral analysis",
-    "authors": "M Saripalle",
-    "journal": "",
-    "year": "2019",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&cstart=20&pagesize=80&citation_for_view=O0kzVucAAAAJ:hqOjcs7Dif8C"
+    citation: "Saripalle, M. (2008). The Indian Auto Component Industry: Competing through Costs or Capabilities.",
+    journal: "IIMB Management Review, Vol. 20(4), Elsevier (ABDC-B)",
+    meta: "",
+    url: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:LkGwnXOMwfcC"
   },
-  {
-    "title": "Determinants of profitability in the Indian logistics industry",
-    "authors": "M Saripalle",
-    "journal": "International Journal of Logistics Economics and Globalisation 7 (1), 13-27",
-    "year": "2018",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:_FxGoFyzp5QC"
-  },
-  {
-    "title": "Jasmine cultivation in Tamil Nadu: Market structure and pricing",
-    "authors": "M Saripalle",
-    "journal": "World Development Perspectives 1, 12-14",
-    "year": "2016",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:WF5omc3nYNoC"
-  },
-  {
-    "title": "Labour practices in India",
-    "authors": "D Nathan, M Saripalle, L Gurunathan",
-    "journal": "ILO Working Papers",
-    "year": "2016",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:5nxA0vEk-isC"
-  },
-  {
-    "title": "Integration into Global Automotive Value Chains: Co-Evolution of Firm and Market Capabilities",
-    "authors": "M Saripalle",
-    "journal": "International Trade and Industrial Development in India: Emerging Trends&nbsp;…",
-    "year": "2016",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:ufrVoPGSRksC"
-  },
-  {
-    "title": "ILO Asia-Pacific Working Paper Series",
-    "authors": "D Nathan, M Saripalle, L Gurunathan",
-    "journal": "",
-    "year": "2016",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&cstart=20&pagesize=80&citation_for_view=O0kzVucAAAAJ:dhFuZR0502QC"
-  },
-  {
-    "title": "Tamil Nadu's Electronics Industry: Lessons for'Make in India'",
-    "authors": "M Saripalle",
-    "journal": "Economic and Political Weekly, 99-103",
-    "year": "2015",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:Y0pCki6q_DkC"
-  },
-  {
-    "title": "R&D Spillovers Across the Supply Chain: Evidence from the Indian Automobile Industry",
-    "authors": "M Saripalle",
-    "journal": "Globalization of Indian Industries: Productivity, Exports and Investment, 43-70",
-    "year": "2015",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&cstart=20&pagesize=80&citation_for_view=O0kzVucAAAAJ:eQOLeE2rZwMC"
-  },
-  {
-    "title": "Fiscal instruments for climate friendly industrial development in tamil nadu",
-    "authors": "DK Srivastava, KR Shanmugam, KSK Kumar, M Saripalle",
-    "journal": "Report",
-    "year": "2014",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:YsMSGLbcyi4C"
-  },
-  {
-    "title": "Learning across policy regimes: a case study of the Indian automobile industry",
-    "authors": "M Saripalle",
-    "journal": "International journal of automotive technology and management 12 (2), 197-217",
-    "year": "2012",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:zYLM7Y9cAGgC"
-  },
-  {
-    "title": "Learning and capability acquisition: A case study of the Indian automobile industry",
-    "authors": "M Saripalle",
-    "journal": "Madras School of Economics",
-    "year": "2012",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:d1gkVwhDpl0C"
-  },
-  {
-    "title": "The Indian Auto Component Industry: Competing through Costs or Capabilities",
-    "authors": "M Saripalle",
-    "journal": "IIMB Management Review 20 (4), 358-373",
-    "year": "2008",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:LkGwnXOMwfcC"
-  },
-  {
-    "title": "Export Competitiveness in the Indian auto-component industry: Does Low Wage Cost matter?",
-    "authors": "M Saripalle",
-    "journal": "Madras School of Economics",
-    "year": "2007",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:IjCSPb-OGe4C"
-  },
-  {
-    "title": "Learning across policy regimes: The impact of protection vis-à-vis competition in the Indian automotive industry",
-    "authors": "M Saripalle",
-    "journal": "University of Connecticut",
-    "year": "2006",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:u5HHmVD_uO8C"
-  },
-  {
-    "title": "Supplier relations in the Indian automotive industry: arms length to long-term commitment",
-    "authors": "M Saripalle",
-    "journal": "online] http://mpra. ub. uni-muenchen. de/1699/1/MPRA_paper_1699. pdf",
-    "year": "2006",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:9yKSN-GCB0IC"
-  },
-  {
-    "title": "Learning and capability acquisition: Growth of the Indian automobile industry",
-    "authors": "M Saripalle",
-    "journal": "University of Connecticut",
-    "year": "2005",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&cstart=20&pagesize=80&citation_for_view=O0kzVucAAAAJ:2osOgNQ5qMEC"
-  },
-  {
-    "title": "Competing through low labour costs versus capabilities",
-    "authors": "M Saripalle, B Line",
-    "journal": "Business Line",
-    "year": "2004",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:u-x6o8ySG0sC"
-  },
-  {
-    "title": "The Economic Impact of Continuing Operations of the University of Connecticut Health Center (Second Report)",
-    "authors": "M Saripalle, T Ray, S McMillen",
-    "journal": "University of Connecticut, Connecticut Center for Economic Analysis",
-    "year": "2002",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&cstart=20&pagesize=80&citation_for_view=O0kzVucAAAAJ:9ZlFYXVOiuMC"
-  },
-  {
-    "title": "Analysis of Alternatives to Incarceration in Connecticut",
-    "authors": "F Carstensen, S McMillen, N Weerasinghe, A Bhattacharya, ...",
-    "journal": "University of Connecticut, Connecticut Center for Economic Analysis",
-    "year": "2001",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&cstart=20&pagesize=80&citation_for_view=O0kzVucAAAAJ:Wp0gIr-vW9MC"
-  },
-  {
-    "title": "Inter-firm relationship and governance structure: A study of Bhilai Steel Plant and its ancillaries",
-    "authors": "M Saripalle",
-    "journal": "Economic and Political Weekly, M106-M113",
-    "year": "1999",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&citation_for_view=O0kzVucAAAAJ:UebtZRa9Y70C"
-  },
-  {
-    "title": "PROMOTING TECHNOLOGIES FOR SUSTAINABLE AGRICULTURE: LESSONS FROM FARMERS IN SOUTH INDIA1",
-    "authors": "M Saripalle",
-    "journal": "",
-    "year": "",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&cstart=20&pagesize=80&citation_for_view=O0kzVucAAAAJ:QIV2ME_5wuYC"
-  },
-  {
-    "title": "Connecticut Prices Put on Their Best Behavior",
-    "authors": "M Saripalle",
-    "journal": "",
-    "year": "",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&cstart=20&pagesize=80&citation_for_view=O0kzVucAAAAJ:mVmsd5A6BfQC"
-  },
-  {
-    "title": "Transporation Prices on a Roll, but Housing Helps Keep Overall Prices in Check",
-    "authors": "M Saripalle",
-    "journal": "",
-    "year": "",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&cstart=20&pagesize=80&citation_for_view=O0kzVucAAAAJ:4DMP91E08xMC"
-  },
-  {
-    "title": "CCEA: Connecticut Prices: Medical Prices SURGE, but Weightier Food and Housing Prices Are More Stable",
-    "authors": "M Saripalle",
-    "journal": "",
-    "year": "",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&cstart=20&pagesize=80&citation_for_view=O0kzVucAAAAJ:aqlVkmm33-oC"
-  },
-  {
-    "title": "R&D Spillovers Across the Supply Chain: Evidence from the Indian Automobile",
-    "authors": "M Saripalle",
-    "journal": "",
-    "year": "",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&cstart=20&pagesize=80&citation_for_view=O0kzVucAAAAJ:KlAtU1dfN6UC"
-  },
-  {
-    "title": "R&D spillovers across the supply chain",
-    "authors": "M Saripalle",
-    "journal": "",
-    "year": "",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&cstart=20&pagesize=80&citation_for_view=O0kzVucAAAAJ:W7OEmFMy1HYC"
-  },
-  {
-    "title": "Labor productivity, trade and R&D in the Electronics industry",
-    "authors": "M Saripalle",
-    "journal": "",
-    "year": "",
-    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&cstart=20&pagesize=80&citation_for_view=O0kzVucAAAAJ:Tyk-4Ss8FVUC"
-  }
 ].map((pub) => (
-                  <div className="pub__item glass-card" key={pub.title} style={{ padding: '1.5rem', marginBottom: '1rem', position: 'relative' }}>
+                  <div className="pub__item glass-card" key={pub.citation} style={{ padding: '1.5rem', marginBottom: '1rem', position: 'relative' }}>
                     <div className="glimmer-overlay" />
                     <div className="pub__node-indicator" />
                     <a href={pub.url} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
-                      <div className="pub__title" style={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: '0.5rem', transition: 'color 0.2s ease' }} onMouseOver={(e) => e.currentTarget.style.color = 'var(--accent-orange)'} onMouseOut={(e) => e.currentTarget.style.color = 'inherit'}>
-                        {pub.title}
+                      <div className="pub__title" style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '0.4rem', transition: 'color 0.2s ease' }} onMouseOver={(e) => e.currentTarget.style.color = 'var(--accent-orange)'} onMouseOut={(e) => e.currentTarget.style.color = 'inherit'}>
+                        {pub.citation}
                       </div>
                     </a>
-                    <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>{pub.authors}{pub.year ? ` (${pub.year})` : ''}</div>
                     <div style={{ fontSize: '0.9rem', color: 'var(--accent-orange)', fontStyle: 'italic' }}>{pub.journal}</div>
-                  </div>
-                ))}
-
-                <div className="pub__category" style={{ marginTop: '2rem' }}>Book Chapters</div>
-                {[
-                  {
-                    title: "Determinants of Employment in the Indian Automobile Industry",
-                    book: "Industrialisation for Employment and Growth in India. Cambridge University Press",
-                    year: "2021",
-                    authors: "Saripalle, M."
-                  },
-                  {
-                    title: "Mango Value Chain in India",
-                    book: "Transforming Agriculture in South Asia. Routledge",
-                    year: "2020",
-                    authors: "Saripalle, M., & Kannan, E."
-                  },
-                  {
-                    title: "Organization of Work in E-Supply Chains",
-                    book: "State Capital Nexus: Implications for Labour. Hyderabad, India",
-                    year: "2020",
-                    authors: "Saripalle, M., & Chebolu-Subramanyan, Vijaya"
-                  },
-                  {
-                    title: "Integration into global automotive value chains: co-evolution of firm and market capabilities",
-                    book: "International Trade and Industrial Development in India: Emerging Trends, Patterns and Issues, Orient Blackswan, New Delhi",
-                    year: "2016",
-                    authors: "Saripalle, M."
-                  },
-                  {
-                    title: "Labour Practices in India",
-                    book: "ILO Asia- Pacific Working Paper Series, ISSN: 2227-4391",
-                    year: "2016",
-                    authors: "Saripalle, M., Dev Nathan, & L Gurunathan"
-                  },
-                  {
-                    title: "R&D spillovers across the supply chain: Evidence from the Indian automobile industry",
-                    book: "Globalization of Indian Industries: productivity, exports and investments, Springer",
-                    year: "2016",
-                    authors: "Saripalle, M."
-                  }
-                ].map((chapter) => (
-                  <div className="pub__item glass-card" key={chapter.title} style={{ padding: '1.5rem', marginBottom: '1rem', position: 'relative' }}>
-                    <div className="glimmer-overlay" />
-                    <div className="pub__node-indicator" />
-                    <div className="pub__title" style={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: '0.5rem' }}>{chapter.title}</div>
-                    <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>{chapter.authors} ({chapter.year})</div>
-                    <div style={{ fontSize: '0.9rem', color: 'var(--accent-orange)', fontStyle: 'italic' }}>{chapter.book}</div>
+                    {pub.meta && <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>{pub.meta}</div>}
                   </div>
                 ))}
               </div>
