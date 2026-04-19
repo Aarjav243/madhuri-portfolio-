@@ -941,11 +941,6 @@ export default function Home() {
                 <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1rem' }}>Funded by Sri AMM Murugappa Chettiar Research Centre (MCRC), Chennai, Tamil Nadu</p>
               </div>
 
-              <div className="project__card glass-card" style={{ padding: '2rem' }}>
-                <div className="glimmer-overlay" />
-                <h4 className="project__title" style={{ fontSize: '1.25rem', fontWeight: 600, marginBottom: '1rem' }}>Labour practices in India</h4>
-                <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1rem' }}>In collaboration with the Institute for Human Development Studies (IHDS) and the International Labour Organisation (ILO)</p>
-              </div>
             </div>           </div>         </section>
 
         {/* ── CONFERENCES ── */}
@@ -1059,10 +1054,10 @@ export default function Home() {
               <div className="publications__list">
                 {[
   {
-    citation: "Saripalle, M. (2024). Economic Analysis of Organic Inputs and Bio Stimulants: Adoption and Crop Yield in South India.",
-    journal: "Sustainable Futures (Under Review)",
-    meta: "",
-    url: "#publications"
+    citation: "Saripalle, M. (2026). Economic analysis of organic inputs and biostimulants: Adoption and crop yield in South India.",
+    journal: "Sustainable Futures, Volume 11",
+    meta: "https://doi.org/10.1016/j.sftr.2026.101851",
+    url: "https://doi.org/10.1016/j.sftr.2026.101851"
   },
   {
     citation: "Saripalle, M., & Gupta, P. (2024). Driving productivity: A comparison of the Indian automobile manufacturers and component suppliers.",
@@ -1160,6 +1155,18 @@ export default function Home() {
                 {
                   citation: "Saripalle, M. (2021). Determinants of Employment in the Indian Automobile Industry. In Industrialisation for Employment and Growth in India: Lessons from Small Enterprises and Big Business.",
                   url: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&cstart=20&pagesize=80&citation_for_view=O0kzVucAAAAJ:kNdYIx-mwKoC"
+                },
+                {
+                  citation: "Integration into global automotive value chains: co-evolution of firm and market capabilities. In, International Trade and Industrial Development in India: Emerging Trends, Patterns and Issues, C. Veeramani and R. Nagaraj(eds), Orient Blackswan (2016), New Delhi, India, pp:202-229.",
+                  url: "#publications"
+                },
+                {
+                  citation: "Labour Practices in India. 2016. With Dev Nathan and L Gurunathan, ILO Asia- Pacific Working Paper Series, ISSN: 2227-4391.",
+                  url: "#publications"
+                },
+                {
+                  citation: "R&D spillovers across the supply chain: Evidence from the Indian automobile industry. 2016; In Globalization of Indian Industries: productivity, exports and investments by Filip De Beule and K.Narayanan (Eds.), India Studies in Business and Economics, Springer, pp:43-70.",
+                  url: "#publications"
                 }
               ].map((chapter) => (
                 <div className="pub__item glass-card" key={chapter.citation} style={{ padding: '1.5rem', marginBottom: '1rem', position: 'relative' }}>
