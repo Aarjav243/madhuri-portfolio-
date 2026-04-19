@@ -1059,6 +1059,12 @@ export default function Home() {
               <div className="publications__list">
                 {[
   {
+    citation: "Saripalle, M. (2024). Economic Analysis of Organic Inputs and Bio Stimulants: Adoption and Crop Yield in South India.",
+    journal: "Sustainable Futures (Under Review)",
+    meta: "",
+    url: "#publications"
+  },
+  {
     citation: "Saripalle, M., & Gupta, P. (2024). Driving productivity: A comparison of the Indian automobile manufacturers and component suppliers.",
     journal: "Asian Journal of Technology Innovation",
     meta: "DOI (Scopus Q2), Taylor and Francis",
@@ -1135,8 +1141,41 @@ export default function Home() {
             </div>
           </div>
         </section>
-
         
+        {/* ── BOOK CHAPTERS ── */}
+        <section className="section" id="book-chapters" data-scroll-section>
+          <div className="section__container">
+            <div className="section__label">Volumes</div>
+            <div className="section__title">Book Chapters</div>
+            <div className="publications__list">
+              {[
+                {
+                  citation: "Saripalle, M., & Kannan, E. (2020). Mango Value Chain in India. In Mishra et al. (Eds.), Transforming Agriculture in South Asia. Routledge.",
+                  url: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&cstart=20&pagesize=80&citation_for_view=O0kzVucAAAAJ:8k81kl-MbHgC"
+                },
+                {
+                  citation: "Saripalle, M., & Chebolu-Subramanyan, Vijaya (2020). Organization of Work in E-Supply Chains. State Capital Nexus: Implications for Labour. Hyderabad, India: Anweshi Research Center.",
+                  url: "#publications"
+                },
+                {
+                  citation: "Saripalle, M. (2021). Determinants of Employment in the Indian Automobile Industry. In Industrialisation for Employment and Growth in India: Lessons from Small Enterprises and Big Business.",
+                  url: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O0kzVucAAAAJ&cstart=20&pagesize=80&citation_for_view=O0kzVucAAAAJ:kNdYIx-mwKoC"
+                }
+              ].map((chapter) => (
+                <div className="pub__item glass-card" key={chapter.citation} style={{ padding: '1.5rem', marginBottom: '1rem', position: 'relative' }}>
+                  <div className="glimmer-overlay" />
+                  <div className="pub__node-indicator" />
+                  <a href={chapter.url} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
+                    <div className="pub__title" style={{ fontSize: '1rem', fontWeight: 600, transition: 'color 0.2s ease' }} onMouseOver={(e) => e.currentTarget.style.color = 'var(--accent-orange)'} onMouseOut={(e) => e.currentTarget.style.color = 'inherit'}>
+                      {chapter.citation}
+                    </div>
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* ── WORKING PAPERS ── */}
         <section className="section" id="working-papers" data-scroll-section>
           <div className="section__container">
@@ -1144,7 +1183,6 @@ export default function Home() {
             <div className="section__title">Working Papers / Monographs</div>
             <div className="publications__list">
               {[
-                { title: "Economic Analysis of Organic Inputs and Bio Stimulants: Adoption and Crop Yield in South India", venue: "Under review, Sustainable Futures" },
                 { title: "Agricultural Transformation and Paddy production: Case study of Telangana", venue: "" },
                 { title: "Decision making in the pandemic under incomplete information: a game theory perspective", venue: "With Vijaya C. Subramanian" },
                 { title: "Mobile penetration, inequality and economic growth", venue: "With Jyoti Prasad Mukhopadhyay and Surabhi Somya" },
